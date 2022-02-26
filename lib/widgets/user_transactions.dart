@@ -11,14 +11,14 @@ class UserTransactions extends StatefulWidget {
 class _UserTransactionsState extends State<UserTransactions> {
   List<Transaction> _userTransactions = [];
 
-  void _addTransaction(String title, String amount) {
+  void _addTransaction(String title, double amount) {
     int transactionsLength = _userTransactions.length;
     setState(() {
       _userTransactions.add(
         Transaction(
           id: 'tx$transactionsLength',
           title: title,
-          amount: double.parse(amount),
+          amount: amount,
           date: DateTime.now(),
         ),
       );
