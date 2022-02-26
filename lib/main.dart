@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_personal_expenses_app/widgets/transaction_list.dart';
-import 'package:intl/intl.dart';
-import 'models/transaction.dart';
 
 void main() => runApp(MyApp());
 
