@@ -12,11 +12,17 @@ class _UserTransactionsState extends State<UserTransactions> {
   List<Transaction> _userTransactions = [];
 
   void _addTransaction(String title, String amount) {
-    print('----------------------------');
-    print('_addTransaction');
-    print(title);
-    print(amount);
-    print('----------------------------');
+    int transactionsLength = _userTransactions.length;
+    setState(() {
+      _userTransactions.add(
+        Transaction(
+          id: 'tx$transactionsLength',
+          title: title,
+          amount: double.parse(amount),
+          date: DateTime.now(),
+        ),
+      );
+    });
   }
 
   @override
