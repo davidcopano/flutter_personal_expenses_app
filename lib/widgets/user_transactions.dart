@@ -9,19 +9,18 @@ class UserTransactions extends StatefulWidget {
 }
 
 class _UserTransactionsState extends State<UserTransactions> {
-  List<Transaction> _userTransactions = [];
+  final List<Transaction> _userTransactions = [];
 
-  void _addTransaction(String title, double amount) {
+  void _addTransaction(String txTitle, double txAmount) {
     int transactionsLength = _userTransactions.length;
+    final newTransaction = Transaction(
+      id: 'tx$transactionsLength',
+      title: txTitle,
+      amount: txAmount,
+      date: DateTime.now(),
+    );
     setState(() {
-      _userTransactions.add(
-        Transaction(
-          id: 'tx$transactionsLength',
-          title: title,
-          amount: amount,
-          date: DateTime.now(),
-        ),
-      );
+      _userTransactions.add(newTransaction);
     });
   }
 
