@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class NewTransaction extends StatelessWidget {
+  final Function addTx;
   final titleController = TextEditingController();
   final amountController = TextEditingController();
-  Function onAddTransaction;
 
-  NewTransaction({this.onAddTransaction});
+  NewTransaction(this.addTx);
 
   void submitData() {
     final enteredTitle = titleController.text;
@@ -15,36 +15,40 @@ class NewTransaction extends StatelessWidget {
       return;
     }
 
-    onAddTransaction(enteredTitle, enteredAmount);
+    addTx(
+      enteredTitle,
+      enteredAmount,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
+    return Container(
       child: Container(
-        padding: const EdgeInsets.all(10),
+        padding: EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
+          children: <Widget>[
             TextField(
               decoration: InputDecoration(labelText: 'Title'),
               controller: titleController,
               onSubmitted: (_) => submitData(),
+              // onChanged: (val) {
+              //   titleInput = val;
+              // },
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
               controller: amountController,
               keyboardType: TextInputType.number,
               onSubmitted: (_) => submitData(),
+              // onChanged: (val) => amountInput = val,
             ),
-            TextButton(
+            FlatButton(
+              child: Text('Add Transaction'),
+              textColor: Colors.purple,
               onPressed: submitData,
-              child: const Text('Add Transaction'),
-              style: TextButton.styleFrom(
-                primary: Colors.purple,
-              ),
-            )
+            ),
           ],
         ),
       ),

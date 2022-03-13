@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
-  List<Transaction> transactions = [];
+  final List<Transaction> transactions;
 
-  TransactionList({this.transactions});
+  TransactionList(this.transactions);
 
   @override
   Widget build(BuildContext context) {
@@ -15,22 +16,22 @@ class TransactionList extends StatelessWidget {
         itemBuilder: (ctx, index) {
           return Card(
             child: Row(
-              children: [
+              children: <Widget>[
                 Container(
-                  margin: const EdgeInsets.symmetric(
+                  margin: EdgeInsets.symmetric(
                     vertical: 10,
                     horizontal: 15,
                   ),
-                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.purple,
                       width: 2,
                     ),
                   ),
+                  padding: EdgeInsets.all(10),
                   child: Text(
                     '\$${transactions[index].amount.toStringAsFixed(2)}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                       color: Colors.purple,
@@ -39,23 +40,22 @@ class TransactionList extends StatelessWidget {
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     Text(
                       transactions[index].title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
+                      style: TextStyle(
                         fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      DateFormat.yMMMMd().format(transactions[index].date),
-                      style: const TextStyle(
+                      DateFormat.yMMMd().format(transactions[index].date),
+                      style: TextStyle(
                         color: Colors.grey,
-                        fontSize: 12,
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           );
